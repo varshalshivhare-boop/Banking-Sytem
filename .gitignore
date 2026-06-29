@@ -1,0 +1,23 @@
+# Dependencies
+node_modules/
+
+# Environment Variables (sensitive - never push to Git!)
+.env
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# VS Code settings
+.vscode/
+
+# OS files
+.DS_Store
+Thumbs.db
