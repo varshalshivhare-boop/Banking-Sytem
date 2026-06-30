@@ -1,2 +1,22 @@
-/.env
-/node_modules
+# Environment Variables (sensitive - never push!)
+.env
+
+# Dependencies
+node_modules/
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+
+# Runtime data
+*.pid
+*.seed
+*.pid.lock
+
+# VS Code settings
+.vscode/
+
+# OS files
+.DS_Store
+Thumbs.db
