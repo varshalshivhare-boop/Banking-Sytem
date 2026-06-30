@@ -63,6 +63,41 @@ const sendRegistrationEmail = async (email, username) => {
     }
 };
 
-module.exports = {
-    sendRegistrationEmail
+const sendTransactionEmail = async (email, username, amount, toAccount) => {
+    try {
+        const client = await getTransporter();
+        const fromAddress = process.env.EMAIL_USER || '"Banking System" <no-reply@bank.com>';
+
+        const mailOptions = {
+            from: fromAddress,
+            to: email,
+            subject: "Transaction Successful - Banking System",
+            html: `
+                <div style="font-family: Arial, sans-serif; padding: 20px; color: #333;">
+                    <h1 style="color: #4A90E2;">Transaction Successful!</h1>
+                    <p>Hi <strong>${username}</strong>,</p>
+                    <p>Your transaction of <strong>₹${amount}</strong> to account <strong>${toAccount}</strong> was completed successfully.</p>
+                    <p style="font-size: 12px; color: #777;">If you did not initiate this transaction, please contact support immediately.</p>
+                </div>
+            `
+        };
+
+        const info = await client.sendMail(mailOptions);
+        console.log(`[Email Service] Transaction email sent: ${info.messageId}`);
+
+        const previewUrl = nodemailer.getTestMessageUrl(info);
+        if (previewUrl) {
+            console.log(`✉️ Preview transaction email: ${previewUrl}`);
+        }
+        return true;
+    } catch (error) {
+        console.error(`[Email Service Error] Failed to send transaction email: ${error.message}`);
+        return false;
+    }
 };
+
+module.exports = {
+    sendRegistrationEmail,
+    sendTransactionEmail
+};
+

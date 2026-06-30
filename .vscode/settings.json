@@ -1,0 +1,8 @@
+{
+    "mdb.presetConnections": [
+        {
+            "name": "Preset Connection",
+            "connectionString": "mongodb+srv://varshalshivhare_db_user:SJG6nH9vtBVnLhbC@cluster1.zlyfl47.mongodb.net/"
+        }
+    ]
+}
